@@ -22,7 +22,7 @@ export async function GET(request: Request) {
         const records = await dns.resolve(domain, type);
         results[type] = records;
       } catch (error) {
-        results[type] = `Error: ${(error as Error).message}`; // Log errors per record type
+        results[type] = `Error: ${(error as Error).message}`;
       }
     }
     return NextResponse.json({ domain, results });
