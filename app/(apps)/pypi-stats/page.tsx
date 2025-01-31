@@ -13,15 +13,15 @@ const PyPiStatsPage = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-            <h1 className="text-4xl font-bold mb-8 text-gray-800">PyPi Package Stats</h1>
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
+            <h1 className="text-4xl font-bold mb-8 text-gray-800 dark:text-white">PyPi Package Stats</h1>
             <div className="w-full max-w-md">
             <input 
                 type="text" 
                 value={packageName} 
                 onChange={(e) => setPackageName(e.target.value)} 
                 placeholder="Enter package name" 
-                className="w-full p-2 mb-4 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-2 mb-4 border border-gray-300 dark:border-gray-700 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button 
                 onClick={fetchPackageInfo} 
@@ -31,8 +31,8 @@ const PyPiStatsPage = () => {
             </button>
             </div>
             {packageInfo && (
-            <div className="mt-8 p-4 bg-white rounded shadow-md w-full max-w-md">
-                <pre className="whitespace-pre-wrap">{JSON.stringify(packageInfo, null, 2)}</pre>
+            <div className="mt-8 p-4 bg-white dark:bg-gray-800 rounded shadow-md w-full max-w-md">
+                <pre className="whitespace-pre-wrap text-black dark:text-white">{JSON.stringify(packageInfo, null, 2)}</pre>
             </div>
             )}
         </div>

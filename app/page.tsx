@@ -3,7 +3,7 @@ import { MdOutlineDns } from "react-icons/md";
 
 export default function Home() {
   return (
-    <div className="p-5">
+    <div className="p-5 dark:bg-gray-900 dark:text-white">
       <header className="mb-5">
         <h1 className="p-4 text-2xl font-bold text-center">
           Welcome to Surya's Toolkit! 🧰

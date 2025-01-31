@@ -24,29 +24,23 @@ const AppCard: React.FC<AppCardProps> = ({
 	};
 
 	return (
-		<div className="w-full rounded overflow-hidden shadow-lg p-2 bg-[#ffffff] flex flex-col justify-between hover:shadow-2xl transition-shadow duration-300">
+		<div className="w-full rounded overflow-hidden shadow-lg p-2 bg-white dark:bg-gray-800 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-300">
 			<Link href={link} className="flex flex-grow" >
 				<div className="p-4 flex-grow">
 					<div className="flex items-center mb-2">
 						{icon && <div className="mr-2">{icon}</div>}
-						<div className="font-bold text-xl text-black">{title}</div>
+						<div className="font-bold text-xl text-black dark:text-white">{title}</div>
 					</div>
-					<p className="text-black text-base mt-4">
-						{/* {isExpanded || description.length <= 120 ? description : `${description.substring(0, 120)}...`} */}
+					<p className="text-black dark:text-white text-base mt-4">
 						{description}
 					</p>
-					{/* {description.length > 120 && (
-						<button onClick={toggleExpand} className="text-blue-500">
-							{isExpanded ? "Show less" : "Show more"}
-						</button>
-					)} */}
 				</div>
 			</Link>
 			<div className="flex justify-end gap-2 p-2">
-				<span className="text-gray-600">
+				<span className="text-gray-600 dark:text-gray-400">
 					<FaHeart />
 				</span>
-				<span className="text-gray-600">
+				<span className="text-gray-600 dark:text-gray-400">
 					<button onClick={() => navigator.clipboard.writeText(window.location.origin + link)}>
 						<FaShare />
 					</button>
