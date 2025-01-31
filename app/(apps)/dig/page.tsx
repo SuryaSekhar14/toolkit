@@ -40,7 +40,7 @@ const DigPage = () => {
         </button>
         {result && (
           <div className="mt-6 bg-gray-100 dark:bg-gray-700 p-4 rounded shadow">
-            <pre className="text-gray-800 dark:text-white">{JSON.stringify(result, null, 2)}</pre>
+            <pre className="text-gray-800 dark:text-white whitespace-pre-wrap break-words">{JSON.stringify(result, null, 2)}</pre>
           </div>
         )}
       </div>
