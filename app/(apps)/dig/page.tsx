@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 const DigPage = () => {
@@ -10,11 +10,11 @@ const DigPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const fetchRecords = async () => {
+  const fetchRecords = async (domainToFetch: string) => {
     setLoading(true);
     try {
-      router.push(`/dig?domain=${domain}`);
-      const response = await fetch(`/api/dig?domain=${domain}`);
+      router.push(`/dig?domain=${domainToFetch}`);
+      const response = await fetch(`/api/dig?domain=${domainToFetch}`);
       const data = await response.json();
       setResult(data);
     } catch (error) {
@@ -23,6 +23,14 @@ const DigPage = () => {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    const domainParam = searchParams.get('domain');
+    if (domainParam) {
+      setDomain(domainParam);
+      fetchRecords(domainParam);
+    }
+  }, [searchParams]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
@@ -37,7 +45,7 @@ const DigPage = () => {
           className="w-full p-2 mb-4 border border-gray-300 dark:border-gray-700 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-black"
         />
         <button 
-          onClick={fetchRecords}
+          onClick={() => fetchRecords(domain)}
           className="w-full p-2 bg-blue-500 text-white rounded shadow hover:bg-blue-600 transition duration-200"
         >
           {loading ? 'Fetching...' : 'Fetch Records'}
