@@ -21,7 +21,7 @@ const DarkModeToggle = () => {
   return (
     <button 
       onClick={toggleDarkMode} 
-      className="fixed top-4 right-4 p-2 rounded dark:text-white"
+      className="p-2 rounded dark:text-white"
       title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
     >
       {isDarkMode ? <MdOutlineDarkMode size={32} /> : <MdOutlineLightMode size={32} />}
