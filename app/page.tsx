@@ -28,19 +28,19 @@ export default function Home() {
           icon={<MdOutlineDns size={32} />}
         />
         <AppCard
-          title="Tool 2"
+          title="PyPi Total Download"
+          description="Get the total download count for a PyPi package."
+          link="/pypi-stats"
+        />
+        <AppCard
+          title="Tool 3"
           description="lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. orem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur."
           link="/tool2"
         />
         <AppCard
-          title="Tool 3"
+          title="Tool 4"
           description="lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur."
           link="/tool3"
-        />
-        <AppCard
-          title="Tool 4"
-          description="Description for tool 4."
-          link="/tool4"
         />
         <AppCard
           title="Tool 5"
