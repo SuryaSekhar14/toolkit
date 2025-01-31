@@ -1,15 +1,19 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const DigPage = () => {
-  const [domain, setDomain] = useState('');
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [domain, setDomain] = useState('');
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const fetchRecords = async () => {
     setLoading(true);
     try {
+      router.push(`/dig?domain=${domain}`);
       const response = await fetch(`/api/dig?domain=${domain}`);
       const data = await response.json();
       setResult(data);
@@ -30,7 +34,7 @@ const DigPage = () => {
           placeholder="Enter domain name" 
           value={domain}
           onChange={(e) => setDomain(e.target.value)}
-          className="w-full p-2 mb-4 border border-gray-300 dark:border-gray-700 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full p-2 mb-4 border border-gray-300 dark:border-gray-700 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-black"
         />
         <button 
           onClick={fetchRecords}
