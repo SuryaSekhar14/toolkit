@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState } from "react";
-import { FaHeart, FaShare, FaComment } from "react-icons/fa";
+import { FaHeart, FaShare } from "react-icons/fa";
 import Link from "next/link";
 
 interface AppCardProps {
-	icon?: React.ReactNode;
+	icon?: React.ReactNode | string;
 	title: string;
 	description: string | React.ReactNode;
 	link: string;
@@ -23,12 +23,19 @@ const AppCard: React.FC<AppCardProps> = ({
 		setIsExpanded(!isExpanded);
 	};
 
+	const renderIcon = () => {
+		if (typeof icon === 'string') {
+			return <img src={icon} alt="icon" className="mr-2 w-6 h-6" />;
+		}
+		return icon;
+	};
+
 	return (
 		<div className="w-full rounded overflow-hidden shadow-lg p-2 bg-white dark:bg-gray-800 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-300">
 			<Link href={link} className="flex flex-grow" >
 				<div className="p-4 flex-grow">
 					<div className="flex items-center mb-2">
-						{icon && <div className="mr-2">{icon}</div>}
+						{icon && <div className="mr-2">{renderIcon()}</div>}
 						<div className="font-bold text-xl text-black dark:text-white">{title}</div>
 					</div>
 					<p className="text-black dark:text-white text-base mt-4">
