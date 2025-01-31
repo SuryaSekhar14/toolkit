@@ -1,6 +1,7 @@
 import AppCard from "./components/AppCard";
 import { MdOutlineDns } from "react-icons/md";
-import PyPiLogo from "./icons/pypi-logo.svg"
+import { SiPypi } from "react-icons/si";
+import PyPiLogo from "./components/icons/pypi-logo"; // Update the import path
 
 export default function Home() {
   return (
@@ -29,10 +30,10 @@ export default function Home() {
           icon={<MdOutlineDns size={32} />}
         />
         <AppCard
-          title="PyPi Total Download"
+          title="PyPi Stats - Total Downloads"
           description="Get the total download count for a PyPi package."
           link="/pypi-stats"
-          icon="/public/file.svg"
+          icon={<SiPypi size={32}/>}
         />
         <AppCard
           title="Tool 3"
