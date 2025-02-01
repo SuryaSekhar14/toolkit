@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 const supportedRecordTypes = ['A', 'AAAA', 'ANY', 'CAA', 'CNAME', 'DNSKEY', 'DS', 'MX', 'NS', 'PTR', 'TXT', 'SOA', 'SPF', 'SRV', 'TLSA', 'TSIG'];
@@ -11,7 +11,7 @@ interface DigResult {
   };
 }
 
-const DigPage = () => {
+const DigPageContent = () => {
   const [result, setResult] = useState<DigResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [domain, setDomain] = useState('');
@@ -87,5 +87,11 @@ const DigPage = () => {
     </div>
   );
 };
+
+const DigPage = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <DigPageContent />
+  </Suspense>
+);
 
 export default DigPage;
