@@ -3,10 +3,19 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
+const supportedRecordTypes = ['A', 'AAAA', 'ANY', 'CAA', 'CNAME', 'DNSKEY', 'DS', 'MX', 'NS', 'PTR', 'TXT', 'SOA', 'SPF', 'SRV', 'TLSA', 'TSIG'];
+
+interface DigResult {
+  results: {
+    [key: string]: any;
+  };
+}
+
 const DigPage = () => {
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<DigResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [domain, setDomain] = useState('');
+  const [activeTab, setActiveTab] = useState(supportedRecordTypes[0]);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -33,10 +42,10 @@ const DigPage = () => {
   }, [searchParams]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
+    <div className="flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 p-4">
       <div className="bg-white dark:bg-gray-800 p-10 rounded-lg shadow-lg w-full">
-        <h1 className="text-4xl font-bold mb-4 text-gray-800 dark:text-white text-center">Dig Tool</h1>
-        <p className="text-gray-700 dark:text-gray-300 text-center mb-6">Fetch DNS records for a domain.</p>
+        <h1 className="text-4xl font-bold mb-4 text-gray-800 dark:text-white text-center">Dig Online</h1>
+        <p className="text-gray-700 dark:text-gray-300 text-center mb-6">Fetch DNS records for a domain using your browser.</p>
         <input 
           type="text" 
           placeholder="Enter domain name" 
@@ -51,8 +60,27 @@ const DigPage = () => {
           {loading ? 'Fetching...' : 'Fetch Records'}
         </button>
         {result && (
-          <div className="mt-6 bg-gray-100 dark:bg-gray-700 p-4 rounded shadow">
-            <pre className="text-gray-800 dark:text-white whitespace-pre-wrap break-words">{JSON.stringify(result, null, 2)}</pre>
+          <div className="mt-6">
+            <div className="flex space-x-2 mb-4 items-center justify-center">
+              {supportedRecordTypes.map((type) => (
+                <button
+                  key={type}
+                  onClick={() => setActiveTab(type)}
+                  className={`p-2 rounded ${activeTab === type ? 'bg-blue-500 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white'}`}
+                >
+                  {type}
+                </button>
+              ))}
+            </div>
+            <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded shadow">
+                {JSON.stringify(result.results[activeTab], null, 2).includes("Error:") ? (
+                <p className="text-red-500">No results found!</p>
+              ) : (
+                <pre className="text-gray-800 dark:text-white whitespace-pre-wrap break-words">
+                  {JSON.stringify(result.results[activeTab], null, 2)}
+                </pre>
+              )}
+            </div>
           </div>
         )}
       </div>
