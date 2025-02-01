@@ -2,6 +2,7 @@ import AppCard from "./components/AppCard";
 import { MdOutlineDns } from "react-icons/md";
 import { SiPypi } from "react-icons/si";
 import Header from "./components/Header";
+import Footer from './components/Footer';
 
 export default function Home() {
   return (
@@ -47,6 +48,8 @@ export default function Home() {
           link="/tool6"
         />
       </div>
+      
+      <Footer />
     </div>
   );
 }
