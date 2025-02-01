@@ -1,21 +1,12 @@
 import AppCard from "./components/AppCard";
 import { MdOutlineDns } from "react-icons/md";
 import { SiPypi } from "react-icons/si";
-import PyPiLogo from "./components/icons/pypi-logo"; // Update the import path
+import Header from "./components/Header";
 
 export default function Home() {
   return (
     <div className="p-5 dark:bg-gray-900 dark:text-white">
-      <header className="mb-5">
-        <h1 className="p-4 text-2xl font-bold text-center">
-          Welcome to Surya's Toolkit! 🧰
-        </h1>
-        <h3 className="text-center">
-          This is a collection of tools that I've built to help me with various
-          tasks. Feel free to use them and let me know if you have any feedback
-          or suggestions.
-        </h3>
-      </header>
+      <Header />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-items-center">
         <AppCard
