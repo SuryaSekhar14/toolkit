@@ -1,7 +1,6 @@
 import AppCard from "./components/AppCard";
 import { MdOutlineDns } from "react-icons/md";
 import { SiPypi } from "react-icons/si";
-import PyPiLogo from "./components/icons/pypi-logo"; // Update the import path
 
 export default function Home() {
   return (
@@ -19,21 +18,22 @@ export default function Home() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-items-center">
         <AppCard
+          title="PyPi Stats - Total Downloads"
+          description="Get the total download count for a PyPi package."
+          link="/pypi-stats"
+          icon={<SiPypi size={32} />}
+        />
+        <AppCard
           title="Dig"
           description={
             <>
               Fetch DNS records for a domain. <br /> <br />
-              Supported record types: <br /> <br /> A, AAAA, ANY, CAA, CNAME, DNSKEY, DS, MX, NS, PTR, TXT, SOA, SPF, SRV, TLSA, TSIG.
-            </>      
-          }    
+              Supported record types: <br /> <br /> A, AAAA, ANY, CAA, CNAME,
+              DNSKEY, DS, MX, NS, PTR, TXT, SOA, SPF, SRV, TLSA, TSIG.
+            </>
+          }
           link="/dig"
           icon={<MdOutlineDns size={32} />}
-        />
-        <AppCard
-          title="PyPi Stats - Total Downloads"
-          description="Get the total download count for a PyPi package."
-          link="/pypi-stats"
-          icon={<SiPypi size={32}/>}
         />
         <AppCard
           title="Tool 3"

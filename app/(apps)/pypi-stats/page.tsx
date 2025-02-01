@@ -13,7 +13,7 @@ const PyPiStatsPage = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
+        <div className="flex flex-col items-center  bg-gray-100 dark:bg-gray-900 p-4">
             <h1 className="text-4xl font-bold mb-8 text-gray-800 dark:text-white">PyPi Package Stats</h1>
             <div className="w-full max-w-md">
             <input 
@@ -21,7 +21,7 @@ const PyPiStatsPage = () => {
                 value={packageName} 
                 onChange={(e) => setPackageName(e.target.value)} 
                 placeholder="Enter package name" 
-                className="w-full p-2 mb-4 border border-gray-300 dark:border-gray-700 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-2 mb-4 border border-gray-300 dark:border-gray-700 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-black"
             />
             <button 
                 onClick={fetchPackageInfo} 
