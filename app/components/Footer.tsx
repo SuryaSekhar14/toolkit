@@ -23,7 +23,12 @@ const Footer: React.FC = () => {
           Submit
         </button>
       </form>
-      <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">&copy; {new Date().getFullYear()} Surya's Toolkit. All rights reserved.</p>
+      <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 flex flex-col md:flex-row justify-center items-center">
+        &copy; {new Date().getFullYear()} Surya's Toolkit. All rights reserved. 
+        <span className="md:ml-2">
+          With <span className="text-red-500">&hearts;</span> by <a href="https://github.com/SuryaSekhar14" className="underline">SuryaSekhar14</a>
+        </span>
+      </p>
     </footer>
   );
 };
