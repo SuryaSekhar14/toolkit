@@ -1,17 +1,35 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Footer: React.FC = () => {
   const [idea, setIdea] = useState('');
   const [showToast, setShowToast] = useState(false);
+  const [animateOut, setAnimateOut] = useState(false);
+  const [progress, setProgress] = useState(100);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setShowToast(true);
     setIdea('');
-    setTimeout(() => setShowToast(false), 3000);
+    setProgress(100);
+    setTimeout(() => {
+      setAnimateOut(true);
+      setTimeout(() => {
+        setShowToast(false);
+        setAnimateOut(false);
+      }, 1000);
+    }, 2000);
   };
+
+  useEffect(() => {
+    if (showToast) {
+      const interval = setInterval(() => {
+        setProgress((prev) => prev - 1);
+      }, 20);
+      return () => clearInterval(interval);
+    }
+  }, [showToast]);
 
   return (
     <footer className="text-center p-5 bg-gray-100 dark:bg-gray-800 dark:text-white mt-10">
@@ -32,8 +50,11 @@ const Footer: React.FC = () => {
         </button>
       </form>
       {showToast && (
-        <div className="fixed bottom-5 right-5 bg-blue-500 text-white p-3 rounded shadow-lg transform transition-transform duration-300 ease-in-out animate-toast-in">
+        <div className={`fixed bottom-5 right-5 bg-blue-500 text-white p-3 rounded shadow-lg transform transition-transform duration-300 ease-in-out ${animateOut ? 'animate-toastOut' : 'animate-toastIn'}`}>
           Thank you for your idea!
+          <div className="w-full bg-blue-700 h-1 mt-2">
+            <div className="bg-blue-300 h-full" style={{ width: `${progress}%` }}></div>
+          </div>
         </div>
       )}
       <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 flex flex-col md:flex-row justify-center items-center">

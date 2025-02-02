@@ -29,11 +29,21 @@ export default {
             transform: 'translate(-50%, -150%) scale(2)',
           },
         },
+        toastIn: {
+          from: { transform: 'translateX(100%)' },
+          to: { transform: 'translateX(0)' },
+        },
+        toastOut: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(100%)' },
+        },
       },
 
       animation: {
         shake: 'shake 0.5s',
         heartAnimation: 'heartAnimation 1s ease-out forwards',
+        toastIn: 'toastIn 0.5s ease-in-out forwards',
+        toastOut: 'toastOut 1s ease-in-out forwards',
       },
     },
   },
