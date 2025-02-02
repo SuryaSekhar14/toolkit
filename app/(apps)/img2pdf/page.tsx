@@ -7,7 +7,11 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FaTimes } from 'react-icons/fa';
 import Toast from '../../components/Toast';
 
-const ACCEPTED_FILE_TYPES = 'image/jpeg, image/png, application/pdf';
+const ACCEPTED_FILE_TYPES = {
+  'image/jpeg': [],
+  'image/png': [],
+  'application/pdf': [],
+};
 
 const Img2Pdf = () => {
   const [files, setFiles] = useState<File[]>([]);
