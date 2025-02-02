@@ -29,6 +29,11 @@ export default function Home() {
           icon={<MdOutlineDns size={32} />}
         />
         <AppCard
+          title="Image 2 PDFs"
+          description="Convert multiple images to a single PDF file."
+          link="/img2pdf"
+        />
+        <AppCard
           title="Tool 3"
           description="lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. orem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur."
           link="/tool2"
@@ -38,11 +43,7 @@ export default function Home() {
           description="lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur."
           link="/tool3"
         />
-        <AppCard
-          title="Tool 5"
-          description="Description for tool 5."
-          link="/tool5"
-        />
+
         <AppCard
           title="Tool 6"
           description="Description for tool 6."
