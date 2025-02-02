@@ -14,23 +14,3 @@
 .animate-toast-in {
   animation: toast-in 3s ease-in-out forwards;
 }
-
-.heart {
-	position: absolute;
-	width: 20px;
-	height: 20px;
-	background: red;
-	transform: translate(-50%, -50%);
-	animation: heart-animation 1s ease-out forwards;
-}
-
-@keyframes heart-animation {
-	0% {
-		opacity: 1;
-		transform: translate(-50%, -50%) scale(1);
-	}
-	100% {
-		opacity: 0;
-		transform: translate(-50%, -150%) scale(2);
-	}
-}
