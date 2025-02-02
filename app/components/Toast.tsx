@@ -17,14 +17,17 @@ const Toast: React.FC<ToastProps> = ({ message, duration = 3000 }) => {
       setProgress((prev) => prev - 1);
     }, duration / 100);
 
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setAnimateOut(true);
       setTimeout(() => {
         setShowToast(false);
       }, 1000);
     }, duration);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timer);
+    };
   }, [duration]);
 
   if (!showToast) return null;

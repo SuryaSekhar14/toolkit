@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { FaHeart, FaShare } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
+import Toast from "./Toast"; // Import the Toast component
 
 interface AppCardProps {
 	icon?: React.ReactNode | string;
@@ -19,6 +20,7 @@ const AppCard: React.FC<AppCardProps> = ({
 	link,
 }) => {
 	const [isExpanded, setIsExpanded] = useState(false);
+	const [showToast, setShowToast] = useState(false);
 
 	const toggleExpand = () => {
 		setIsExpanded(!isExpanded);
@@ -43,6 +45,11 @@ const AppCard: React.FC<AppCardProps> = ({
 		}, 1000);
 	};
 
+	const copyLink = () => {
+		navigator.clipboard.writeText(window.location.origin + link);
+		setShowToast(true);
+	};
+
 	return (
 		<div className="w-full rounded overflow-hidden shadow-lg p-2 bg-white dark:bg-gray-800 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-300">
 			<Link href={link} className="flex flex-grow" >
@@ -60,10 +67,11 @@ const AppCard: React.FC<AppCardProps> = ({
 				<button className="text-gray-600 dark:text-gray-400" onClick={emitHearts}>
 					<FaHeart />
 				</button>
-				<button className="text-gray-600 dark:text-gray-400" onClick={() => navigator.clipboard.writeText(window.location.origin + link)}>
+				<button className="text-gray-600 dark:text-gray-400" onClick={copyLink}>
 					<FaShare />
 				</button>
 			</div>
+			{showToast && <Toast message="Link copied to clipboard!" duration={1000} />}
 		</div>
 	);
 };

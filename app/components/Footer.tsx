@@ -11,7 +11,6 @@ const Footer: React.FC = () => {
     e.preventDefault();
     setShowToast(true);
     setIdea("");
-    setTimeout(() => setShowToast(false), 3000);
   };
 
   return (
@@ -37,7 +36,7 @@ const Footer: React.FC = () => {
           Submit
         </button>
       </form>
-      {showToast && <Toast message="Thank you for your idea!" />}
+      {showToast && <Toast message="Thank you for your idea!" duration={3000} />}
       <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 flex flex-col md:flex-row justify-center items-center">
         &copy; {new Date().getFullYear()}&nbsp;
         <a href="https://surya.dev" className="underline" target="_blank">
