@@ -29,9 +29,9 @@ export default function Home() {
           icon={<MdOutlineDns size={32} />}
         />
         <AppCard
-          title="Image 2 PDFs"
+          title="Image to PDFs!"
           description="Convert multiple images to a single PDF file."
-          link="/img2pdf"
+          link="/image-to-pdf"
         />
         <AppCard
           title="Tool 3"
