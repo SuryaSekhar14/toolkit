@@ -87,8 +87,7 @@ const Img2Pdf = () => {
         <div className="md:w-1/2 p-2">
           <div
             {...getRootProps()}
-            className={`border-dashed border-2 p-5 mb-4 cursor-pointer ${isDragActive ? 'border-blue-500 bg-blue-100' : ''}`}
-            style={{ height: '300px' }}
+            className={`border-dashed border-2 p-5 mb-4 cursor-pointer ${isDragActive ? 'border-blue-500 bg-blue-100' : ''} md:h-96 h-48`}
           >
             <input {...getInputProps()} />
             <p>Drag & drop some files here, or click to select files</p>
@@ -122,7 +121,7 @@ const Img2Pdf = () => {
                           {...provided.dragHandleProps}
                           className="p-2 mb-2 border rounded flex justify-between items-center"
                         >
-                          <span>{index + 1}. {file.name}</span>
+                          <span className="break-words w-3/4">{index + 1}. {file.name}</span>
                           <button
                             onClick={() => handleDelete(index)}
                             className="text-red-500"
