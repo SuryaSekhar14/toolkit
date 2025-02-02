@@ -1,0 +1,12 @@
+@keyframes toast-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-toast-in {
+  animation: toast-in 3s ease-in-out forwards;
+}

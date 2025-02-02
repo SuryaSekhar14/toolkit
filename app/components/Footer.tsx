@@ -4,11 +4,19 @@ import React, { useState } from 'react';
 
 const Footer: React.FC = () => {
   const [idea, setIdea] = useState('');
+  const [showToast, setShowToast] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowToast(true);
+    setIdea('');
+    setTimeout(() => setShowToast(false), 3000);
+  };
 
   return (
     <footer className="text-center p-5 bg-gray-100 dark:bg-gray-800 dark:text-white mt-10">
       <p className="mb-4">Have any ideas? We'd love to hear from you! Submit your ideas to us.</p>
-      <form className="flex items-center justify-center">
+      <form className="flex items-center justify-center" onSubmit={handleSubmit}>
         <input
           type="text"
           value={idea}
@@ -23,6 +31,11 @@ const Footer: React.FC = () => {
           Submit
         </button>
       </form>
+      {showToast && (
+        <div className="fixed bottom-5 right-5 bg-blue-500 text-white p-3 rounded shadow-lg transform transition-transform duration-300 ease-in-out animate-toast-in">
+          Thank you for your idea!
+        </div>
+      )}
       <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 flex flex-col md:flex-row justify-center items-center">
         &copy; {new Date().getFullYear()} Surya's Toolkit. All rights reserved. 
         <span className="md:ml-2">
