@@ -72,7 +72,7 @@ const Img2Pdf = () => {
         <p>Drag & drop some files here, or click to select files</p>
       </div>
       <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId="files">
+        <Droppable droppableId="files" isDropDisabled={false} isCombineEnabled={false}>
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef} className="mb-4">
               {files.map((file, index) => (
