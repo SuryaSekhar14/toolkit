@@ -29,18 +29,20 @@ export default function Home() {
           icon={<MdOutlineDns size={32} />}
         />
         <AppCard
-          title="Image 2 PDFs"
-          description="Convert multiple images to a single PDF file."
+          title="Image to PDF Converter"
+          description={
+            <>Convert multiple images and PDFs to a single PDF file online.</>
+          }
           link="/img2pdf"
         />
         <AppCard
           title="Tool 4"
-          description="lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur."
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           link="/tool4"
         />
         <AppCard
           title="Tool 5"
-          description="lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. orem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur."
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
           link="/tool5"
         />
         <AppCard
