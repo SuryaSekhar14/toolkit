@@ -2,7 +2,7 @@ import AppCard from "./components/AppCard";
 import { MdOutlineDns } from "react-icons/md";
 import { SiPypi } from "react-icons/si";
 import Header from "./components/Header";
-import Footer from './components/Footer';
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -34,23 +34,22 @@ export default function Home() {
           link="/img2pdf"
         />
         <AppCard
-          title="Tool 3"
-          description="lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. orem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur."
-          link="/tool2"
-        />
-        <AppCard
           title="Tool 4"
           description="lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur."
-          link="/tool3"
+          link="/tool4"
         />
-
+        <AppCard
+          title="Tool 5"
+          description="lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. orem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur. lorem ipsum dolor sit amet consectetur."
+          link="/tool5"
+        />
         <AppCard
           title="Tool 6"
           description="Description for tool 6."
           link="/tool6"
         />
       </div>
-      
+
       <Footer />
     </div>
   );

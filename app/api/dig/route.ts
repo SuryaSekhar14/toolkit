@@ -1,15 +1,32 @@
-import { NextResponse } from 'next/server';
-import dns from 'node:dns/promises';
+import { NextResponse } from "next/server";
+import dns from "node:dns/promises";
 
-const supportedRecordTypes = ['A', 'AAAA', 'ANY', 'CAA', 'CNAME', 'DNSKEY', 'DS', 'MX', 'NS', 'PTR', 'TXT', 'SOA', 'SPF', 'SRV', 'TLSA', 'TSIG'];
+const supportedRecordTypes = [
+  "A",
+  "AAAA",
+  "ANY",
+  "CAA",
+  "CNAME",
+  "DNSKEY",
+  "DS",
+  "MX",
+  "NS",
+  "PTR",
+  "TXT",
+  "SOA",
+  "SPF",
+  "SRV",
+  "TLSA",
+  "TSIG",
+];
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const domain = searchParams.get('domain');
- 
+  const domain = searchParams.get("domain");
+
   if (!domain) {
     return NextResponse.json(
-      { error: 'Domain is required to fetch DNS records.' },
+      { error: "Domain is required to fetch DNS records." },
       { status: 400 }
     );
   }

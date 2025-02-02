@@ -72,12 +72,19 @@ const Img2Pdf = () => {
     setPdfUrl(URL.createObjectURL(pdfBlob));
   };
 
-  const acceptedFileTypes = Object.keys(ACCEPTED_FILE_TYPES).map(type => type.split('/')[1].toLocaleLowerCase()).join(', ');
+  const acceptedFileTypes = Object.keys(ACCEPTED_FILE_TYPES)
+    .map((type) => type.split("/")[1].toLocaleLowerCase())
+    .join(", ");
 
   return (
     <div className="p-5 dark:bg-gray-900 dark:text-white w-full md:w-3/4 mx-auto">
-      <h1 className="text-2xl mb-4 font-bold text-center">Image to PDF Converter</h1>
-      <p className="text-center mb-4"> <b>Accepted file types:</b> {acceptedFileTypes}</p>
+      <h1 className="text-2xl mb-4 font-bold text-center">
+        Image to PDF Converter
+      </h1>
+      <p className="text-center mb-4">
+        {" "}
+        <b>Accepted file types:</b> {acceptedFileTypes}
+      </p>
       <div
         {...getRootProps()}
         className="border-dashed border-2 p-5 mb-4 cursor-pointer"
@@ -111,7 +118,9 @@ const Img2Pdf = () => {
                       {...provided.dragHandleProps}
                       className="p-2 mb-2 border rounded flex justify-between items-center"
                     >
-                      <span>{index + 1}. {file.name}</span>
+                      <span>
+                        {index + 1}. {file.name}
+                      </span>
                       <button
                         onClick={() => handleDelete(index)}
                         className="text-red-500"

@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 interface ToastProps {
   message: string;
@@ -33,10 +33,17 @@ const Toast: React.FC<ToastProps> = ({ message, duration = 3000 }) => {
   if (!showToast) return null;
 
   return (
-    <div className={`fixed bottom-5 right-5 bg-blue-500 text-white p-3 rounded shadow-lg transform transition-transform duration-300 ease-in-out ${animateOut ? 'animate-toastOut' : 'animate-toastIn'}`}>
+    <div
+      className={`fixed bottom-5 right-5 bg-blue-500 text-white p-3 rounded shadow-lg transform transition-transform duration-300 ease-in-out ${
+        animateOut ? "animate-toastOut" : "animate-toastIn"
+      }`}
+    >
       {message}
       <div className="w-full bg-blue-700 h-1 mt-2">
-        <div className="bg-blue-300 h-full" style={{ width: `${progress}%` }}></div>
+        <div
+          className="bg-blue-300 h-full"
+          style={{ width: `${progress}%` }}
+        ></div>
       </div>
     </div>
   );
