@@ -44,7 +44,10 @@ const DraggableFile: React.FC<DraggableFileProps> = ({ file, index, moveFile, ha
 
   return (
     <div
-      ref={(node) => ref(drop(node))}
+      ref={(node) => {
+        ref(node);
+        drop(node);
+      }}
       className={`p-2 mb-2 border rounded flex justify-between items-center ${isDragging ? 'opacity-0' : 'opacity-100'}`}
     >
       <span className="break-words w-3/4">{index + 1}. {file.name}</span>
