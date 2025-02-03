@@ -29,11 +29,11 @@ export default function Home() {
           icon={<MdOutlineDns size={32} />}
         />
         <AppCard
-          title="Image to PDF Converter"
+          title="Online Image to PDF Converter!"
           description={
             <>Convert multiple images and PDFs to a single PDF file online.</>
           }
-          link="/img2pdf"
+          link="/image-to-pdf"
         />
         <AppCard
           title="Tool 4"
