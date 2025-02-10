@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "Surya's Toolkit",
   description: "",
   icons: {
-    icon: "/s-logo.png",
+    icon: "/favicon.ico",
   },
 };
 
