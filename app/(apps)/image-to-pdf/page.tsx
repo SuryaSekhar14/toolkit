@@ -153,23 +153,28 @@ const Img2Pdf: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center mt-4 space-x-4">
           <button
             onClick={generatePdf}
             className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200"
           >
             Generate PDF
           </button>
+          <button
+            onClick={() => setFiles([])}
+            className="p-2 bg-red-500 text-white rounded hover:bg-red-600 transition duration-200"
+          >
+            Delete All
+          </button>
         </div>
         {pdfUrl && (
           <div className="mt-4 text-center">
-            <a
-              href={pdfUrl}
-              download="output.pdf"
-              className="text-blue-500 underline"
-            >
-              Download PDF
-            </a>
+            <iframe
+              src={pdfUrl}
+              width="100%"
+              height="500px"
+              className="border-2 border-gray-300"
+            ></iframe>
           </div>
         )}
         {showToast && (
