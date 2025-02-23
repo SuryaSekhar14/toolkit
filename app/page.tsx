@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <div className="p-5 dark:bg-gray-900 dark:text-white">
+    <div className="p-10 dark:bg-gray-900 dark:text-white">
       <Header />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-items-center">
@@ -36,19 +36,9 @@ export default function Home() {
           link="/image-to-pdf"
         />
         <AppCard
-          title="Tool 4"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          link="/tool4"
-        />
-        <AppCard
-          title="Tool 5"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-          link="/tool5"
-        />
-        <AppCard
-          title="Tool 6"
-          description="Description for tool 6."
-          link="/tool6"
+          title="Clipboard image download"
+          description="Download your clipboard images as a file."
+          link="/clipboard-image-download" 
         />
       </div>
 
