@@ -22,22 +22,6 @@ const supportedRecordTypes = [
   "TSIG",
 ];
 
-export const metadata = {
-  title: "DNS Dig - Online",
-  description:
-    "Fetch DNS records for a domain. Supported record types: A, AAAA, ANY, CAA, CNAME, DNSKEY, DS, MX, NS, PTR, TXT, SOA, SPF, SRV, TLSA, TSIG.",
-  keywords: ["dig", "online", "dns dig", "dns records", "dns lookup", "dns", "tools", "surya", "surya's toolkit"],
-  openGraph: {
-    title: "DNS Dig - Online",
-    description: "Fetch DNS records for a domain. Supported record types: A, AAAA, ANY, CAA, CNAME, DNSKEY, DS, MX, NS, PTR, TXT, SOA, SPF, SRV, TLSA, TSIG.",
-    url: "https://toolkit.surya.dev/dig",
-    // images: [{ url: "https://yourapp.com/images/miniapp1.jpg" }],
-  },
-  alternates: {
-    canonical: "https://toolkit.surya.dev/dig",
-  },
-};
-
 interface DigResult {
   results: {
     [key: string]: any;
