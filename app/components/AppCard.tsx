@@ -19,13 +19,6 @@ const AppCard: React.FC<AppCardProps> = ({
   description,
   link,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
-
   const renderIcon = () => {
     if (typeof icon === "string") {
       return (

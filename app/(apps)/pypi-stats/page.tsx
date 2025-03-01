@@ -19,15 +19,18 @@ const PyPiStatsPage = () => {
         <title>PyPi Stats</title>
         <meta
           name="description"
-          content="Get PyPi package total download stats."
+          content="Get PyPi package total download stats for any package."
         />
-        <meta name="keywords" content="" />
+        <meta name="keywords" content="pypi total downloads stats" />
         <meta property="og:title" content="PyPi Stats" />
         <meta
           property="og:description"
           content="Get PyPi package total download stats."
         />
-        <meta property="og:url" content="https://toolkit.surya.dev/pypi-stats" />
+        <meta
+          property="og:url"
+          content="https://toolkit.surya.dev/pypi-stats"
+        />
         <meta
           property="og:image"
           content="https://toolkit.surya.dev/favicon.ico"

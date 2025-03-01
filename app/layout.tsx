@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Surya's Toolkit",
-  description: "",
+  description: "A collection of tools and utilities.",
   icons: {
     icon: "/favicon.ico",
   },

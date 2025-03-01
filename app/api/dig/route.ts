@@ -22,13 +22,19 @@ const supportedRecordTypes = [
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const domain = searchParams.get("domain");
+  let domain = searchParams.get("domain");
 
   if (!domain) {
     return NextResponse.json(
       { error: "Domain is required to fetch DNS records." },
       { status: 400 }
     );
+  }
+
+  if (domain.startsWith("https://")) {
+    domain = domain.slice(8);
+  } else if (domain.startsWith("http://")) {
+    domain = domain.slice(7);
   }
 
   const results: { [key: string]: any } = {};
