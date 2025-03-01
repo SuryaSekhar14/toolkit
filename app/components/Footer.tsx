@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Toast from "./Toast";
+import toast from "react-hot-toast";
 
 const Footer: React.FC = () => {
   const [idea, setIdea] = useState("");
@@ -9,7 +9,9 @@ const Footer: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setShowToast(true);
+    toast.success("Thank you for your idea!", {
+      duration: 3000,
+    });
     setIdea("");
   };
 
@@ -36,9 +38,6 @@ const Footer: React.FC = () => {
           Submit
         </button>
       </form>
-      {showToast && (
-        <Toast message="Thank you for your idea!" duration={3000} />
-      )}
       <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 flex flex-col md:flex-row justify-center items-center">
         &copy; {new Date().getFullYear()}&nbsp;
         <a href="https://surya.dev" className="underline" target="_blank">

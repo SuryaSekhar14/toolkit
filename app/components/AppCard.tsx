@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { FaHeart, FaShare } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
-import Toast from "./Toast"; // Import the Toast component
+import toast from "react-hot-toast";
 
 interface AppCardProps {
   icon?: React.ReactNode | string;
@@ -56,7 +56,9 @@ const AppCard: React.FC<AppCardProps> = ({
 
   const copyLink = () => {
     navigator.clipboard.writeText(window.location.origin + link);
-    setShowToast(true);
+    toast.success(`Link copied to the clipboard successfully!`, {
+      duration: 1500,
+    });
   };
 
   return (
@@ -85,9 +87,6 @@ const AppCard: React.FC<AppCardProps> = ({
           <FaShare />
         </button>
       </div>
-      {showToast && (
-        <Toast message="Link copied to clipboard!" duration={1000} />
-      )}
     </div>
   );
 };
