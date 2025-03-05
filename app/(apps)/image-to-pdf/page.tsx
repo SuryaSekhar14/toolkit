@@ -6,7 +6,7 @@ import { useDropzone } from "react-dropzone";
 import { useDrag, useDrop, DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { FaTimes } from "react-icons/fa";
-import Toast from "../../components/Toast";
+import toast from "react-hot-toast";
 
 const ACCEPTED_FILE_TYPES = {
   "image/jpeg": [],
@@ -61,7 +61,6 @@ const DraggableFile: React.FC<DraggableFileProps> = ({ file, index, moveFile, ha
 const Img2Pdf: React.FC = () => {
   const [files, setFiles] = useState<{ file: File, id: string }[]>([]);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
-  const [showToast, setShowToast] = useState(false);
   const [isDragActive, setIsDragActive] = useState(false);
 
   const onDrop = (acceptedFiles: File[]) => {
@@ -90,8 +89,7 @@ const Img2Pdf: React.FC = () => {
 
   const generatePdf = async () => {
     if (files.length === 0) {
-      setShowToast(true);
-      setTimeout(() => setShowToast(false), 2000);
+      toast.error("Please upload files before generating PDF.");
       return;
     }
 
@@ -176,9 +174,6 @@ const Img2Pdf: React.FC = () => {
               className="border-2 border-gray-300"
             ></iframe>
           </div>
-        )}
-        {showToast && (
-          <Toast message="Please upload files before generating PDF." duration={2000} />
         )}
       </div>
       <style jsx>{`
