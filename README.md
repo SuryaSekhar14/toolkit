@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Surya's Toolkit
+
+![Vercel Deploy](https://deploy-badge.vercel.app/vercel/toolkit-t87d)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Node.js](https://img.shields.io/badge/node-%3E%3D14.0.0-green.svg)](https://nodejs.org/)
+
+Welcome to Surya's Toolkit! This project is a collection of useful tools and utilities designed to make your life easier. Whether you need to convert images to PDFs, fetch DNS records, or get PyPi package download stats, this toolkit has got you covered.
+
+## Features
+
+- **PyPi Stats**: Get the total download count for any PyPi package.
+- **Dig**: Fetch DNS records for a domain. Supported record types include A, AAAA, ANY, CAA, CNAME, DNSKEY, DS, MX, NS, PTR, TXT, SOA, SPF, SRV, TLSA, and TSIG.
+- **Image to PDF Converter**: Convert multiple images and PDFs to a single PDF file online.
+- **Clipboard Image Download**: Download your clipboard images as a file (Coming Soon).
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (v14 or higher)
+- npm or yarn
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   git clone https://github.com/surya/toolkit.git
+   cd toolkit
+   ```
 
-## Learn More
+2. Install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Run the development server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-## Deploy on Vercel
+4. Open your browser and navigate to `http://localhost:3000`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployed Link
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check out the live version of the project [here](https://toolkit.surya.dev).
+
+## Contributing
+
+Contributions are welcome! If you have any ideas for new tools or improvements, feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+If you have any questions or feedback, please reach out to me at [hello@surya.dev](mailto:hello@surya.dev).
+
+Happy coding!
