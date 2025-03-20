@@ -36,9 +36,19 @@ export default function Home() {
           link="/image-to-pdf"
         />
         <AppCard
+          title="Text Editor"
+          description="A simple text editor to edit and download your text online."
+          link="/text-editor"
+        />
+        <AppCard
           title="Clipboard image download"
           description="Download your clipboard images as a file."
           link="/clipboard-image-download" 
+        />
+        <AppCard
+          title="QR Code Generator"
+          description="Generate QR codes for your links."
+          link="/qr-code"
         />
       </div>
 
