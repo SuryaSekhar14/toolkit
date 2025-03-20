@@ -1,5 +1,7 @@
 import AppCard from "./components/AppCard";
-import { MdOutlineDns } from "react-icons/md";
+import { MdOutlineDns, MdOutlineQrCodeScanner } from "react-icons/md";
+import { BsReverseLayoutTextWindowReverse, BsFiletypePdf } from "react-icons/bs";
+import { HiOutlineClipboardDocument } from "react-icons/hi2";
 import { SiPypi } from "react-icons/si";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -34,21 +36,25 @@ export default function Home() {
             <>Convert multiple images and PDFs to a single PDF file online.</>
           }
           link="/image-to-pdf"
+          icon={<BsFiletypePdf size={32} />}
         />
         <AppCard
           title="Text Editor"
           description="A simple text editor to edit and download your text online."
           link="/text-editor"
-        />
-        <AppCard
-          title="Clipboard image download"
-          description="Download your clipboard images as a file."
-          link="/clipboard-image-download" 
+          icon={<BsReverseLayoutTextWindowReverse size={32} />}
         />
         <AppCard
           title="QR Code Generator"
           description="Generate QR codes for your links."
           link="/qr-code"
+          icon={<MdOutlineQrCodeScanner size={32} />}
+        />
+        <AppCard
+          title="Clipboard image download"
+          description="Download your clipboard images as a file."
+          link="/clipboard-image-download"
+          icon={<HiOutlineClipboardDocument size={32} />}
         />
       </div>
 

@@ -3,7 +3,7 @@ import DarkModeToggle from "./DarkModeToggle";
 
 const Navbar = () => {
   return (
-    <nav className="w-full flex items-center justify-between p-4 bg-white dark:bg-gray-800 shadow">
+    <nav className="w-full flex items-center justify-between p-4 bg-white dark:bg-gray-800 shadow border-b-2 border-b-gray-500">
       <div className="flex items-center">
         <Link href="/">
           <img src="/icons/s-logo.png" alt="Logo" className="h-8 w-8 mr-2" />
