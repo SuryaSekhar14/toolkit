@@ -1,11 +1,24 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { QRCodeSVG } from "qrcode.react";
 
 export default function QRCodeGenerator() {
   const [text, setText] = useState("");
   const qrRef = useRef<HTMLDivElement>(null);
+
+  const debounce = (func: (...args: any[]) => void, delay: number) => {
+    let timer: NodeJS.Timeout;
+    return (...args: any[]) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => func(...args), delay);
+    };
+  };
+
+  const handleInputChange = useCallback(
+    debounce((value: string) => setText(value), 300),
+    []
+  );
 
   const downloadQRCode = () => {
     if (qrRef.current) {
@@ -27,8 +40,7 @@ export default function QRCodeGenerator() {
       <input
         type="text"
         placeholder="Enter text"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => handleInputChange(e.target.value)}
         className="p-2 w-72 border border-gray-300 rounded mb-5 bg-white text-black dark:bg-gray-800 dark:text-white dark:border-gray-600"
       />
       <div ref={qrRef} className="mb-5">
