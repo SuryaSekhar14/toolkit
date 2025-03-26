@@ -1,17 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Head from "next/head";
+import { PyPiStatsViewModel } from "@/app/viewmodels/PyPiStatsViewModel";
 
 const PyPiStatsPage = () => {
-  const [packageName, setPackageName] = useState("");
-  const [packageInfo, setPackageInfo] = useState(null);
-
-  const fetchPackageInfo = async () => {
-    const response = await fetch(`/api/stats?package=${packageName}`);
-    const data = await response.json();
-    setPackageInfo(data);
-  };
+  const {
+    packageName,
+    setPackageName,
+    packageInfo,
+    loading,
+    fetchPackageInfo,
+  } = PyPiStatsViewModel();
 
   return (
     <>
@@ -37,7 +37,7 @@ const PyPiStatsPage = () => {
         />
         <link rel="canonical" href="https://toolkit.surya.dev/pypi-stats" />
       </Head>
-      <div className="flex flex-col items-center  bg-gray-100 dark:bg-gray-900 p-4">
+      <div className="flex flex-col items-center bg-gray-100 dark:bg-gray-900 p-4">
         <h1 className="text-4xl font-bold mb-8 text-gray-800 dark:text-white">
           PyPi Package Stats
         </h1>
@@ -52,8 +52,9 @@ const PyPiStatsPage = () => {
           <button
             onClick={fetchPackageInfo}
             className="w-full p-2 bg-blue-500 text-white rounded shadow hover:bg-blue-600 transition duration-200"
+            disabled={loading}
           >
-            Get Total Download Info
+            {loading ? "Fetching..." : "Get Total Download Info"}
           </button>
         </div>
         {packageInfo && (
@@ -68,4 +69,4 @@ const PyPiStatsPage = () => {
   );
 };
 
-export default PyPiStatsPage;
+export default PyPiStatsPage; 
