@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import Head from "next/head";
 import { PyPiStatsViewModel } from "@/app/viewmodels/PyPiStatsViewModel";
+import { copyToClipboard } from "@/app/utils/copyToClipboard";
 
 const PyPiStatsPage = () => {
   const {
@@ -11,6 +11,7 @@ const PyPiStatsPage = () => {
     packageInfo,
     loading,
     fetchPackageInfo,
+    notFound,
   } = PyPiStatsViewModel();
 
   return (
@@ -35,11 +36,39 @@ const PyPiStatsPage = () => {
             {loading ? "Fetching..." : "Get Total Download Info"}
           </button>
         </div>
-        {packageInfo && (
+        {notFound && (
           <div className="mt-8 p-4 bg-white dark:bg-gray-800 rounded shadow-md w-full max-w-md">
-            <pre className="whitespace-pre-wrap text-black dark:text-white">
-              {JSON.stringify(packageInfo, null, 2)}
-            </pre>
+            <p className="text-red-500">Package not found</p>
+          </div>
+        )}
+        {packageInfo && (
+          <div className="mt-8 grid grid-cols-1 gap-4 w-full max-w-md">
+            <div className="p-4 bg-white dark:bg-gray-800 rounded shadow-md">
+              <div className="flex justify-between items-center pl-4 pr-4">
+                <h2 className="text-lg font-bold">Download Statistics</h2>
+                <button
+                  onClick={() =>
+                    copyToClipboard(JSON.stringify(packageInfo, null, 2))
+                  }
+                  className="p-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200"
+                >
+                  Copy
+                </button>
+              </div>
+              <div className="mt-2">
+                {Object.entries(packageInfo).map(([key, value]) => (
+                  <div
+                    key={key}
+                    className="p-4 border border-gray-300 rounded-lg mb-4 shadow hover:shadow-lg transition-shadow duration-200"
+                  >
+                    <strong className="text-gray-200">
+                      {key.replace(/([A-Z])/g, " $1")}:{" "}
+                    </strong>
+                    <span className="text-white">{value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         )}
       </div>
@@ -47,4 +76,4 @@ const PyPiStatsPage = () => {
   );
 };
 
-export default PyPiStatsPage; 
+export default PyPiStatsPage;

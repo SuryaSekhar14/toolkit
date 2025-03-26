@@ -4,6 +4,7 @@ import { PyPiStatsModel } from "@/app/models/PyPiStatsModel";
 export const PyPiStatsViewModel = () => {
   const [packageName, setPackageName] = useState<string>("");
   const [packageInfo, setPackageInfo] = useState<PyPiStatsModel | null>(null);
+  const [notFound, setNotFound] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   const fetchPackageInfo = async () => {
@@ -13,9 +14,12 @@ export const PyPiStatsViewModel = () => {
     try {
       const response = await fetch(`/api/stats?package=${packageName}`);
       if (!response.ok) {
+        setPackageInfo(null);
+        setNotFound(true);
         throw new Error(`Failed to fetch data: ${response.statusText}`);
       }
       const data = await response.json();
+      setNotFound(false);
       setPackageInfo(new PyPiStatsModel(
         data.lastDayDownloads,
         data.lastWeekDownloads,
@@ -38,5 +42,6 @@ export const PyPiStatsViewModel = () => {
     packageInfo,
     loading,
     fetchPackageInfo,
+    notFound,
   };
 }; 
