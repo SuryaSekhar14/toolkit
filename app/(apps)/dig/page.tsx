@@ -1,44 +1,20 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import React, { Suspense } from "react";
 import { supportedRecordTypes } from "@/config";
-
-interface DigResult {
-  results: {
-    [key: string]: any;
-  };
-}
+import { DigViewModel } from "@/app/viewmodels/digViewModel";
 
 const DigPageContent = () => {
-  const [result, setResult] = useState<DigResult | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [domain, setDomain] = useState("");
-  const [activeTab, setActiveTab] = useState(supportedRecordTypes[0]);
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
-  const fetchRecords = async (domainToFetch: string) => {
-    setLoading(true);
-    try {
-      router.push(`/dig?domain=${domainToFetch}`);
-      const response = await fetch(`/api/dig?domain=${domainToFetch}`);
-      const data = await response.json();
-      setResult(data);
-    } catch (error) {
-      console.error("Error fetching DNS records:", error);
-      setResult(null);
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    const domainParam = searchParams.get("domain");
-    if (domainParam) {
-      setDomain(domainParam);
-      fetchRecords(domainParam);
-    }
-  }, [searchParams]);
+  const {
+    domain,
+    loading,
+    result,
+    activeTab,
+    fetchRecords,
+    handleDomainChange,
+    handleTabChange,
+    hasResults,
+  } = DigViewModel();
 
   return (
     <div className="flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 p-4">
@@ -53,7 +29,7 @@ const DigPageContent = () => {
           type="text"
           placeholder="Enter domain name"
           value={domain}
-          onChange={(e) => setDomain(e.target.value)}
+          onChange={handleDomainChange}
           className="w-full p-2 mb-4 border border-gray-300 dark:border-gray-700 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-black"
         />
         <button
@@ -68,7 +44,7 @@ const DigPageContent = () => {
               {supportedRecordTypes.map((type) => (
                 <button
                   key={type}
-                  onClick={() => setActiveTab(type)}
+                  onClick={() => handleTabChange(type)}
                   className={`p-2 rounded ${
                     activeTab === type
                       ? "bg-blue-500 text-white"
@@ -80,9 +56,7 @@ const DigPageContent = () => {
               ))}
             </div>
             <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded shadow">
-              {JSON.stringify(result.results[activeTab], null, 2).includes(
-                "Error:"
-              ) ? (
+              {!hasResults(activeTab) ? (
                 <p className="text-red-500">No results found!</p>
               ) : (
                 <pre className="text-gray-800 dark:text-white whitespace-pre-wrap break-words">
