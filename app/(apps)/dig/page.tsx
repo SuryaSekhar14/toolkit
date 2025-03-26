@@ -20,7 +20,7 @@ const DigPageContent = () => {
     <div className="flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 p-4">
       <div className="bg-white dark:bg-gray-800 p-10 rounded-lg shadow-lg w-full">
         <h1 className="text-4xl font-bold mb-4 text-gray-800 dark:text-white text-center">
-          Dig Online
+          Dig - Fetch DNS Records Online
         </h1>
         <p className="text-gray-700 dark:text-gray-300 text-center mb-6">
           Fetch DNS records for a domain using your browser.
