@@ -15,28 +15,6 @@ const PyPiStatsPage = () => {
 
   return (
     <>
-      <Head>
-        <title>PyPi Stats</title>
-        <meta
-          name="description"
-          content="Get PyPi package total download stats for any package."
-        />
-        <meta name="keywords" content="pypi total downloads stats" />
-        <meta property="og:title" content="PyPi Stats" />
-        <meta
-          property="og:description"
-          content="Get PyPi package total download stats."
-        />
-        <meta
-          property="og:url"
-          content="https://toolkit.surya.dev/pypi-stats"
-        />
-        <meta
-          property="og:image"
-          content="https://toolkit.surya.dev/favicon.ico"
-        />
-        <link rel="canonical" href="https://toolkit.surya.dev/pypi-stats" />
-      </Head>
       <div className="flex flex-col items-center bg-gray-100 dark:bg-gray-900 p-4">
         <h1 className="text-4xl font-bold mb-8 text-gray-800 dark:text-white">
           PyPi Package Stats

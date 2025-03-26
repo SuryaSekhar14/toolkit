@@ -2,25 +2,7 @@
 
 import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-
-const supportedRecordTypes = [
-  "A",
-  "AAAA",
-  "ANY",
-  "CAA",
-  "CNAME",
-  "DNSKEY",
-  "DS",
-  "MX",
-  "NS",
-  "PTR",
-  "TXT",
-  "SOA",
-  "SPF",
-  "SRV",
-  "TLSA",
-  "TSIG",
-];
+import { supportedRecordTypes } from "@/config";
 
 interface DigResult {
   results: {

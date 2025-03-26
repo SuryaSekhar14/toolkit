@@ -1,24 +1,6 @@
 import { NextResponse } from "next/server";
 import dns from "node:dns/promises";
-
-const supportedRecordTypes = [
-  "A",
-  "AAAA",
-  "ANY",
-  "CAA",
-  "CNAME",
-  "DNSKEY",
-  "DS",
-  "MX",
-  "NS",
-  "PTR",
-  "TXT",
-  "SOA",
-  "SPF",
-  "SRV",
-  "TLSA",
-  "TSIG",
-];
+import { supportedRecordTypes } from "@/config";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
