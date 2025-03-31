@@ -1,21 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
+import { useTheme } from "next-themes";
+
 
 const DarkModeToggle = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const { theme, setTheme } = useTheme();
+  const isDarkMode = theme === "dark";
 
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDarkMode]);
+  if (theme == undefined) {
+    console.log("theme is undefined");
+  } else {
+    console.log("theme is defined");
+  }
 
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
+    setTheme(isDarkMode ? "light" : "dark");
   };
 
   return (
