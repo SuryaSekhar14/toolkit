@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/react-dnd": "^3.0.2",
+    "chart.js": "^4.4.9",
     "next": "15.1.4",
     "next-themes": "^0.4.6",
     "pdf-lib": "^1.17.1",
@@ -17,6 +18,7 @@
     "quill": "^2.0.3",
     "react": "^19.0.0",
     "react-beautiful-dnd": "^13.1.1",
+    "react-chartjs-2": "^5.3.0",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^19.0.0",
