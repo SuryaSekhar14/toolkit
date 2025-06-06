@@ -39,7 +39,7 @@ export default function QRCodeGenerator() {
       <h1 className="text-2xl font-bold mb-5">QR Code Generator</h1>
       <input
         type="text"
-        placeholder="Enter text"
+        placeholder="Enter text or link to encode"
         onChange={(e) => handleInputChange(e.target.value)}
         className="p-2 w-72 border border-gray-300 rounded mb-5 bg-white text-black dark:bg-gray-800 dark:text-white dark:border-gray-600"
       />

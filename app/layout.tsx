@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import { ToastProvider } from "./components/ToastProvider";
 import { ThemeProvider } from "next-themes";
+import Sidenav from "./components/Sidenav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,8 +40,15 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Navbar />
-          <ToastProvider />
-          {children}
+          <div className="flex min-h-[calc(100vh-65px)]">
+            <div className="hidden md:block">
+              <Sidenav />
+            </div>
+            <main className="flex-grow">
+              <ToastProvider />
+              {children}
+            </main>
+          </div>
         </ThemeProvider>
       </body>
     </html>

@@ -219,7 +219,7 @@ const PyPiStatsPage = () => {
             className="w-full p-2 mb-4 border border-gray-300 dark:border-gray-700 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-black"
           />
           <button
-            onClick={fetchPackageInfo}
+            onClick={() => fetchPackageInfo()}
             className="w-full p-2 bg-blue-500 text-white rounded shadow hover:bg-blue-600 transition duration-200"
             disabled={loading}
           >
