@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PyPiStatsViewModel } from "@/app/viewmodels/PyPiStatsViewModel";
 import { copyToClipboard } from "@/app/utils/copyToClipboard";
+import { useTheme } from "next-themes";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,6 +13,9 @@ import {
   Title,
   Tooltip,
   Legend,
+  ChartOptions,
+  Scale,
+  ScriptableScaleContext,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
@@ -26,6 +30,17 @@ ChartJS.register(
 );
 
 const PyPiStatsPage = () => {
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  
+  // After mounted on client, we have access to the theme
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
+  // Handle the case when the theme is already set in local storage
+  const isDarkMode = mounted ? (theme === "dark" || resolvedTheme === "dark") : true;
+  
   const {
     packageName,
     setPackageName,
@@ -34,6 +49,12 @@ const PyPiStatsPage = () => {
     fetchPackageInfo,
     notFound,
   } = PyPiStatsViewModel();
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      fetchPackageInfo();
+    }
+  };
 
   const getTrendChartData = () => {
     if (!packageInfo) return {
@@ -123,7 +144,7 @@ const PyPiStatsPage = () => {
       legend: {
         position: 'top' as const,
         labels: {
-          color: 'white',
+          color: isDarkMode ? 'white' : '#333',
           font: {
             size: 12
           }
@@ -132,7 +153,7 @@ const PyPiStatsPage = () => {
       title: {
         display: true,
         text: `Download Statistics for ${packageName || 'Package'}`,
-        color: 'white',
+        color: isDarkMode ? 'white' : '#333',
         font: {
           size: 16,
           weight: "bold" as const
@@ -143,21 +164,44 @@ const PyPiStatsPage = () => {
       y: {
         beginAtZero: true,
         ticks: { 
-          color: 'white',
-          callback: (value: number) => {
-            if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
-            if (value >= 1000) return (value / 1000).toFixed(1) + 'K';
-            return value;
+          color: isDarkMode ? 'white' : '#333',
+          callback: function(this: Scale, tickValue: number) {
+            if (tickValue >= 1000000) return (tickValue / 1000000).toFixed(1) + 'M';
+            if (tickValue >= 1000) return (tickValue / 1000).toFixed(1) + 'K';
+            return tickValue;
           }
         },
-        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+        grid: { color: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)' },
       },
       x: {
-        ticks: { color: 'white' },
-        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+        ticks: { color: isDarkMode ? 'white' : '#333' },
+        grid: { color: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)' },
       },
     },
-  };
+  } as ChartOptions<'line'>;
+
+  // Create copies with specific titles for the different charts
+  const trendChartOptions = {
+    ...chartOptions,
+    plugins: {
+      ...(chartOptions.plugins || {}),
+      title: {
+        ...(chartOptions.plugins?.title || {}),
+        text: 'Download Growth'
+      }
+    }
+  } as ChartOptions<'line'>;
+
+  const monthlyChartOptions = {
+    ...chartOptions,
+    plugins: {
+      ...(chartOptions.plugins || {}),
+      title: {
+        ...(chartOptions.plugins?.title || {}),
+        text: 'Downloads per Month'
+      }
+    }
+  } as ChartOptions<'line'>;
 
   return (
     <>
@@ -170,6 +214,7 @@ const PyPiStatsPage = () => {
             type="text"
             value={packageName}
             onChange={(e) => setPackageName(e.target.value)}
+            onKeyDown={handleKeyDown}
             placeholder="Enter package name"
             className="w-full p-2 mb-4 border border-gray-300 dark:border-gray-700 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-black"
           />
@@ -225,16 +270,7 @@ const PyPiStatsPage = () => {
               <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
                 <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">Download Trends</h2>
                 <div className="h-[300px]">
-                  {getTrendChartData() && <Line data={getTrendChartData()!} options={{
-                    ...chartOptions,
-                    plugins: {
-                      ...chartOptions.plugins,
-                      title: {
-                        ...chartOptions.plugins.title,
-                        text: 'Download Growth'
-                      }
-                    }
-                  }} />}
+                  {getTrendChartData() && <Line data={getTrendChartData()} options={trendChartOptions} />}
                 </div>
               </div>
             </div>
@@ -242,16 +278,7 @@ const PyPiStatsPage = () => {
             <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
               <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">Monthly Download Estimates</h2>
               <div className="h-[300px]">
-                {getMonthlyDownloadsData() && <Line data={getMonthlyDownloadsData()!} options={{
-                  ...chartOptions,
-                  plugins: {
-                    ...chartOptions.plugins,
-                    title: {
-                      ...chartOptions.plugins.title,
-                      text: 'Downloads per Month'
-                    }
-                  }
-                }} />}
+                {getMonthlyDownloadsData() && <Line data={getMonthlyDownloadsData()} options={monthlyChartOptions} />}
               </div>
             </div>
           </div>
