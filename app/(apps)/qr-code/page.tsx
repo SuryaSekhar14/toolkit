@@ -5,6 +5,7 @@ import { QRCodeSVG } from "qrcode.react";
 
 export default function QRCodeGenerator() {
   const [text, setText] = useState("");
+  const [error, setError] = useState("");
   const qrRef = useRef<HTMLDivElement>(null);
 
   const debounce = (func: (...args: any[]) => void, delay: number) => {
@@ -16,7 +17,18 @@ export default function QRCodeGenerator() {
   };
 
   const handleInputChange = (value: string) => {
-    const debouncedSetText = debounce((value: string) => setText(value), 300);
+    setError("");
+    const debouncedSetText = debounce((value: string) => {
+      try {
+        if (value.length >= 1500) {
+          setError("Text too long for QR code. Please reduce length.");
+          return;
+        }
+        setText(value);
+      } catch (err) {
+        setError("An error occurred generating the QR code.");
+      }
+    }, 300);
     debouncedSetText(value);
   };
 
@@ -42,11 +54,13 @@ export default function QRCodeGenerator() {
         placeholder="Enter text or link to encode"
         onChange={(e) => handleInputChange(e.target.value)}
         className="p-2 w-72 border border-gray-300 rounded mb-5 bg-white text-black dark:bg-gray-800 dark:text-white dark:border-gray-600"
+        maxLength={1500}
       />
+      {error && <div className="text-red-500 mb-3">{error}</div>}
       <div ref={qrRef} className="mb-5">
-        {text && <QRCodeSVG value={text} size={256} className="mx-auto" />}
+        {text && !error && <QRCodeSVG value={text} size={256} className="mx-auto" />}
       </div>
-      {text && (
+      {text && !error && (
         <button
           onClick={downloadQRCode}
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800"
