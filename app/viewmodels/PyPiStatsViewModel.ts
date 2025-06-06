@@ -39,7 +39,7 @@ export const PyPiStatsViewModel = () => {
 
   // Update URL and trigger query when form is submitted
   const fetchPackageInfo = useCallback((packageToFetch?: string) => {
-    const pkgName = packageToFetch || packageName;
+    const pkgName = packageToFetch ?? packageName;
     if (!pkgName) return;
     
     // Update URL and set the query package to trigger the SWR fetch

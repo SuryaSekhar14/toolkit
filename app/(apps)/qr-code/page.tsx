@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef } from "react";
 import { QRCodeSVG } from "qrcode.react";
 
 export default function QRCodeGenerator() {
@@ -26,6 +26,7 @@ export default function QRCodeGenerator() {
         }
         setText(value);
       } catch (err) {
+        console.error(err);
         setError("An error occurred generating the QR code.");
       }
     }, 300);

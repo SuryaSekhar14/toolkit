@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { FaHeart, FaShare } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";

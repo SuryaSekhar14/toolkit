@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 
 const Footer: React.FC = () => {
   const [idea, setIdea] = useState("");
-  const [showToast, setShowToast] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

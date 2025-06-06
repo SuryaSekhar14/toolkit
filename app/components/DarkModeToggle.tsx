@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const DarkModeToggle = () => {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   // Use a mounting state to avoid hydration mismatch
   const [mounted, setMounted] = useState(false);
   

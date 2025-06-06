@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import ReactCrop, { centerCrop, makeAspectCrop, Crop, PixelCrop } from 'react-image-crop';
+import ReactCrop, { Crop, PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 
 export default function ClipboardImageDownload() {
@@ -24,9 +24,9 @@ export default function ClipboardImageDownload() {
       const items = e.clipboardData?.items;
       if (!items) return;
       
-      for (let i = 0; i < items.length; i++) {
-        if (items[i].type.indexOf("image") !== -1) {
-          const blob = items[i].getAsFile();
+      for (const item of Array.from(items)) {
+        if (item.type.indexOf("image") !== -1) {
+          const blob = item.getAsFile();
           if (!blob) continue;
           
           const reader = new FileReader();
@@ -52,7 +52,6 @@ export default function ClipboardImageDownload() {
   
   const onImageLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
     if (isCropping) {
-      const { width, height } = e.currentTarget;
       
       // Just set a default starting crop area (50% centered)
       setCrop({

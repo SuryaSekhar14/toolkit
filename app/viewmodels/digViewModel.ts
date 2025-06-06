@@ -14,7 +14,7 @@ export const DigViewModel = () => {
   const searchParams = useSearchParams();
   
   // Only fetch data if we have a domain to query
-  const { data, error, isLoading } = useSWR<DigResultData>(
+  const { isLoading } = useSWR<DigResultData>(
     queryDomain ? `/api/dig?domain=${queryDomain}` : null,
     fetcher,
     {
