@@ -51,9 +51,9 @@ export default function Sidenav() {
 
   return (
     <div className="w-64 h-full bg-white dark:bg-gray-800 shadow-md">
-      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+      {/* <div className="p-4 border-b border-gray-200 dark:border-gray-700">
         <h2 className="text-xl font-semibold">Toolkit</h2>
-      </div>
+      </div> */}
       <nav className="p-2">
         <ul>
           {navItems.map((item) => {
