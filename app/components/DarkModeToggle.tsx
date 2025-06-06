@@ -2,21 +2,33 @@
 
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 import { useTheme } from "next-themes";
-
+import { useEffect, useState } from "react";
 
 const DarkModeToggle = () => {
   const { theme, setTheme } = useTheme();
-  const isDarkMode = theme === "dark";
+  // Use a mounting state to avoid hydration mismatch
+  const [mounted, setMounted] = useState(false);
+  
+  // Handle the case when the theme is already set in local storage or not yet resolved
+  const isDarkMode = mounted && theme ? theme === "dark" : true;
 
-  if (theme == undefined) {
-    console.log("theme is undefined");
-  } else {
-    console.log("theme is defined");
-  }
+  // After mounted on client, we have access to the theme
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleDarkMode = () => {
     setTheme(isDarkMode ? "light" : "dark");
   };
+
+  // If not mounted yet, show a skeleton to avoid layout shift
+  if (!mounted) {
+    return (
+      <div className="w-16 h-8 bg-gray-300 dark:bg-gray-700 rounded-full relative">
+        <div className="absolute top-1 left-[2px] h-6 w-6 bg-white rounded-full"></div>
+      </div>
+    );
+  }
 
   return (
     <label className="relative inline-flex items-center cursor-pointer">

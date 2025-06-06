@@ -30,7 +30,7 @@ const DigPageContent = () => {
           placeholder="Enter domain name"
           value={domain}
           onChange={handleDomainChange}
-          className="w-full p-2 mb-4 border border-gray-300 dark:border-gray-700 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-black"
+          className="w-full p-2 mb-4 border border-gray-300 dark:border-gray-700 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white"
         />
         <button
           onClick={() => fetchRecords(domain)}

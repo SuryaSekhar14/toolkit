@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { FaHeart, FaShare } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
@@ -55,7 +55,7 @@ const AppCard: React.FC<AppCardProps> = ({
   };
 
   return (
-    <div className="w-full rounded overflow-hidden shadow-lg p-2 bg-white dark:bg-gray-800 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-300">
+    <div className="w-full rounded overflow-hidden shadow-lg p-2 bg-white dark:bg-gray-800 flex flex-col justify-between hover:shadow-2xl transition-all duration-300 hover:transform hover:scale-[1.02] hover:border-blue-500 border-2 border-transparent">
       <Link href={link} className="flex flex-grow">
         <div className="p-4 flex-grow">
           <div className="flex items-center mb-2">
@@ -71,12 +71,17 @@ const AppCard: React.FC<AppCardProps> = ({
       </Link>
       <div className="flex justify-end gap-2 p-2">
         <button
-          className="text-gray-600 dark:text-gray-400"
+          className="text-gray-600 dark:text-gray-400 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
           onClick={emitHearts}
+          aria-label="Like"
         >
           <FaHeart />
         </button>
-        <button className="text-gray-600 dark:text-gray-400" onClick={copyLink}>
+        <button 
+          className="text-gray-600 dark:text-gray-400 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" 
+          onClick={copyLink}
+          aria-label="Share"
+        >
           <FaShare />
         </button>
       </div>
