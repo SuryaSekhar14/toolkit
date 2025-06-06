@@ -47,7 +47,7 @@ export const PyPiStatsViewModel = () => {
       setPackageName(packageParam);
       fetchPackageInfo(packageParam);
     }
-  }, [searchParams]);
+  }, [searchParams, fetchPackageInfo]);
 
   return {
     packageName,

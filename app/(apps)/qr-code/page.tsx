@@ -15,10 +15,10 @@ export default function QRCodeGenerator() {
     };
   };
 
-  const handleInputChange = useCallback(
-    debounce((value: string) => setText(value), 300),
-    []
-  );
+  const handleInputChange = (value: string) => {
+    const debouncedSetText = debounce((value: string) => setText(value), 300);
+    debouncedSetText(value);
+  };
 
   const downloadQRCode = () => {
     if (qrRef.current) {

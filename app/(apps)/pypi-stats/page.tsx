@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { PyPiStatsViewModel } from "@/app/viewmodels/PyPiStatsViewModel";
 import { copyToClipboard } from "@/app/utils/copyToClipboard";
 import { useTheme } from "next-themes";
@@ -29,7 +29,7 @@ ChartJS.register(
   Legend
 );
 
-const PyPiStatsPage = () => {
+const PyPiStatsContent = () => {
   const { theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   
@@ -285,6 +285,14 @@ const PyPiStatsPage = () => {
         )}
       </div>
     </>
+  );
+};
+
+const PyPiStatsPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PyPiStatsContent />
+    </Suspense>
   );
 };
 

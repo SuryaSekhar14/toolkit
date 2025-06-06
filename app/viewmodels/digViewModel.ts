@@ -34,7 +34,7 @@ export const DigViewModel = () => {
       setDomain(domainParam);
       fetchRecords(domainParam);
     }
-  }, [searchParams]);
+  }, [searchParams, fetchRecords]);
 
   const handleDomainChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDomain(e.target.value);
