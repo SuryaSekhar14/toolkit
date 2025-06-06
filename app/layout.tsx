@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import { ToastProvider } from "./components/ToastProvider";
 import { ThemeProvider } from "next-themes";
+import { SWRConfig } from "swr";
+import { defaultSWROptions } from "./utils/swrFetcher";
 import Sidenav from "./components/Sidenav";
 
 const geistSans = Geist({
@@ -39,16 +41,18 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased  dark:bg-gray-900 dark:text-white`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <Navbar />
-          <div className="flex min-h-[calc(100vh-65px)]">
-            <div className="hidden md:block">
-              <Sidenav />
+          <SWRConfig value={defaultSWROptions}>
+            <Navbar />
+            <div className="flex min-h-[calc(100vh-65px)]">
+              <div className="hidden md:block">
+                <Sidenav />
+              </div>
+              <main className="flex-grow">
+                <ToastProvider />
+                {children}
+              </main>
             </div>
-            <main className="flex-grow">
-              <ToastProvider />
-              {children}
-            </main>
-          </div>
+          </SWRConfig>
         </ThemeProvider>
       </body>
     </html>

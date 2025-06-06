@@ -1,40 +1,50 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { supportedRecordTypes } from "@/config";
 import { DigModel, DigResultData } from "../models/DigModel";
+import useSWR from "swr";
+import { fetcher, defaultSWROptions } from "@/app/utils/swrFetcher";
 
 export const DigViewModel = () => {
   const [model] = useState<DigModel>(new DigModel());
-  const [loading, setLoading] = useState(false);
   const [domain, setDomain] = useState("");
+  const [queryDomain, setQueryDomain] = useState("");
   const [activeTab, setActiveTab] = useState(supportedRecordTypes[0]);
   const router = useRouter();
   const searchParams = useSearchParams();
-
-  const fetchRecords = async (domainToFetch: string) => {
-    setLoading(true);
-    try {
-      router.push(`/dig?domain=${domainToFetch}`);
-      const response = await fetch(`/api/dig?domain=${domainToFetch}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch DNS records");
+  
+  // Only fetch data if we have a domain to query
+  const { data, error, isLoading } = useSWR<DigResultData>(
+    queryDomain ? `/api/dig?domain=${queryDomain}` : null,
+    fetcher,
+    {
+      ...defaultSWROptions,
+      onSuccess: (data: DigResultData) => {
+        model.setData(data);
+      },
+      onError: () => {
+        model.setData(null);
       }
-      const data: DigResultData = await response.json();
-      model.setData(data);
-    } catch (error) {
-      console.error("Error fetching DNS records:", error);
-      model.setData(null);
     }
-    setLoading(false);
-  };
+  );
 
+  // Update URL and trigger query when form is submitted
+  const fetchRecords = useCallback((domainToFetch: string) => {
+    if (!domainToFetch) return;
+    
+    // Update URL and set the query domain to trigger the SWR fetch
+    router.push(`/dig?domain=${domainToFetch}`);
+    setQueryDomain(domainToFetch);
+  }, [router]);
+
+  // Initialize from URL params on first load
   useEffect(() => {
     const domainParam = searchParams.get("domain");
     if (domainParam) {
       setDomain(domainParam);
-      fetchRecords(domainParam);
+      setQueryDomain(domainParam);
     }
-  }, [searchParams, fetchRecords]);
+  }, [searchParams]);
 
   const handleDomainChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDomain(e.target.value);
@@ -50,7 +60,7 @@ export const DigViewModel = () => {
 
   return {
     domain,
-    loading,
+    loading: isLoading,
     result: model.getData(),
     activeTab,
     fetchRecords,
