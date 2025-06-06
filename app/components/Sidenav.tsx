@@ -43,6 +43,11 @@ const navItems = [
     name: "QR Code Generator",
     path: "/qr-code",
     icon: <MdOutlineQrCodeScanner size={20} />
+  },
+  {
+    name: "Clipboard Image Download",
+    path: "/clipboard-image-download",
+    icon: <HiOutlineClipboardDocument size={20} />
   }
 ];
 
